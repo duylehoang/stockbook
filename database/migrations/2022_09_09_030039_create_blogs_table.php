@@ -22,6 +22,7 @@ class CreateBlogsTable extends Migration
             $table->text('content')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->integer('category_id')->default(1);
+            $table->bigInteger('view')->default(0);
             $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
