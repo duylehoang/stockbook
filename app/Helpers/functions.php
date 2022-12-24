@@ -3,12 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Setting;
+use Illuminate\Support\Facades\Route;
 
 if (!function_exists('isCurrentRouteName')) {
     function iscurrentRouteName($names)
     {
         $names = array_map('trim', explode(',', $names));
-        return in_array(\Route::currentRouteName(), $names, true);
+        return in_array(Route::currentRouteName(), $names, true);
     }
 }
 

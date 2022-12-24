@@ -202,6 +202,10 @@ dd {
 }
 
 blockquote {
+  font-style: italic;
+  color: #215269;
+  border-left: 4px solid #b7c1c6;
+  padding-left: 10px;
   margin: 0 0 1rem;
 }
 
@@ -11029,13 +11033,6 @@ p {
 }
 p a {
   text-decoration: underline;
-}
-
-blockquote {
-  font-style: italic;
-  color: #607d8b;
-  border-left: 4px solid #b7c1c6;
-  padding-left: 10px;
 }
 
 .btn {
