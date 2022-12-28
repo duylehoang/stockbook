@@ -17,7 +17,15 @@ class HomeController extends Controller
         // top 5 bai viet moi nhat
         $latest_blogs = Blog::valid()->orderBy('id', 'desc')->take(5)->get();
 
+        // Get banner
+        $gallery = Gallery::valid()->where('type', 1)->first();
+        $banner = null;
+        if ($gallery) {
+            $banner = asset('upload/images/'. $gallery->name);
+        }
+
         return view('home.index', [
+            'banner' => $banner,
             'latest_blogs' => $latest_blogs
         ]);
     }
@@ -28,7 +36,16 @@ class HomeController extends Controller
                 $q->where('blogs.status', '=', 1);
             }])->valid()->orderBy('sort_order')->get();
 
-        return view('home.list_blog', compact('categories'));
+        // Get banner
+        $gallery = Gallery::valid()->where('type', 2)->first();
+        $banner = null;
+        if ($gallery) {
+             $banner = asset('upload/images/'. $gallery->name);
+        }
+        return view('home.list_blog', [
+            'banner' => $banner,
+            'categories' => $categories
+        ]);
     }
 
     public function blogDetail($slug) 

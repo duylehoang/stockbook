@@ -123,15 +123,3 @@ if (!function_exists('setOption')) {
         }
     }
 }
-
-if (!function_exists('getBanner')) {
-    function getBanner($type)
-    {
-        $banner = DB::table('galleries')->where('type', $type)->where('status', 1)->first();
-        if($banner) {
-            return asset('upload/images/' . $banner->name);
-        } 
-
-        return null;
-    }
-}
