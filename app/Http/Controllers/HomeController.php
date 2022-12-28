@@ -14,6 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // top 5 bai viet moi nhat
         $latest_blogs = Blog::valid()->orderBy('id', 'desc')->take(5)->get();
 
         return view('home.index', [

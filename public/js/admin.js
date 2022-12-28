@@ -78,15 +78,42 @@ $(document).ready(function(){
         });
     });
 
+    $(".view").click(function (e) {
+        e.preventDefault();
+        let url = $(this).attr('href');
+        let diary_date = $(this).data('date');
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (response) {
+                $("#tradingView").find('.modal-title').text(diary_date);
+                $("#tradingView").find('.modal-body').html(response);
+                $("#tradingView").modal("show");
+            },
+            error: function (xhr, status, error) {
+                let errorMessage = xhr.status + ': ' + xhr.statusText;
+                alert(errorMessage);
+            }
+        });
+    });
+
     var content =  document.getElementById('content');
     if (typeof(content) !== undefined && content !== null)
     {
-        CKEDITOR.replace('content', {
-            language: 'vi',
-            height: '500px',
-            filebrowserUploadUrl: document.getElementById('blog-image').value,
-            filebrowserUploadMethod: 'form',
-        });
+        var ck_image =  document.getElementById('ck_image');
+        if (typeof(ck_image) !== undefined && ck_image !== null) {
+            CKEDITOR.replace('content', {
+                language: 'vi',
+                height: '500px',
+                filebrowserUploadUrl: document.getElementById('ck_image').value,
+                filebrowserUploadMethod: 'form',
+            });
+        } else {
+            CKEDITOR.replace('content', {
+                language: 'vi',
+                height: '400px',
+            });
+        }
     }
 });
 

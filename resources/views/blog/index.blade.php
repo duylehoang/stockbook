@@ -7,6 +7,17 @@
         <h1 class="h2">Blogs</h1>
         <a href="{{route('blog.create')}}" class="btn btn-secondary">Thêm mới</a>
     </div>
+    <form class="search-box" method="GET" action="{{route('blog.index') }}">
+        <input type="hidden" name="search_box" value="1">
+        <select name="category" id="category">
+            <option value="">-- Chọn danh mục --</option>
+            @foreach ($categories as $category)
+                <option value="{{$category->id}}" {{$request->category==$category->id? 'selected': ''}}>{{ $category->name }}</option>
+            @endforeach
+        </select>
+        <input type="text" name="search" placeholder="search..." value="{{$request->search}}">
+        <button type="submit">Search</button>
+    </form>
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered table-sm table-main" id="table-blogs">
             <thead>
@@ -24,7 +35,7 @@
             <tbody>
                 @if(count($blogs)==0) 
                     <tr>
-                        <td colspan="7" class="text-center">Không có dữ liệu</td>
+                        <td colspan="8" class="text-center">Không có dữ liệu</td>
                     </tr>
                 @else 
                 @foreach ($blogs as $item)

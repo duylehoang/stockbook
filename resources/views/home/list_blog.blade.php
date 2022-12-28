@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Page Header-->
-    <header class="masthead" style="background-image: url('{{ asset('/images/home-bg.jpg') }}')">
+    <header class="masthead" style="background-image: url('{{ getBanner(2) }}')">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
@@ -25,6 +25,7 @@
                             <div class="card {{$key!==0? 'mt-3': null }}">
                                 <div class="card-header">
                                     {{$category->name}}
+                                    <i class="fa-sharp fa-solid fa-chevron-down card-toggle"></i>
                                 </div>
                                 <div class="card-body">
                                     <ol>

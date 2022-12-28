@@ -33,7 +33,7 @@
                     <div class="mb-3">
                         <label for="content" class="form-label">Nội dung</label>
                         <textarea name="content" id="content" class="content">{{ old('content', $blog->content) }}</textarea>
-                        <input type="hidden" id="blog-image" 
+                        <input type="hidden" id="ck_image" 
                             value="{{route('blog.image', ['_token'=>csrf_token(), 'blog_id'=>$blog->id ])}}">
                         @if($errors->has('content'))
                             <div class="invalid">{{$errors->first('content')}}</div>

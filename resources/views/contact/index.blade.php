@@ -5,8 +5,17 @@
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Contacts</h1>
-        {{-- <a href="{{route('category.create')}}" class="btn btn-secondary">Thêm mới</a> --}}
     </div>
+    <form class="search-box" method="GET" action="{{route('contact.index') }}">
+        <input type="hidden" name="search_box" value="1">
+        <select name="replied">
+            <option value="">-- Replied --</option>
+            <option value="'0'">Chưa</option>
+            <option value="1">Đã trả lời</option>
+        </select>
+        <input type="text" name="search" placeholder="search..." value="{{$request->search}}">
+        <button type="submit">Search</button>
+    </form>
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered table-sm table-main" id="table-contacts">
             <thead>

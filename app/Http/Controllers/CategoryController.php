@@ -17,11 +17,16 @@ class CategoryController extends Controller
         $this->category = $category;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::withCount('blogs')->orderBy('sort_order')->get();
-
+        if($request->has('search_box')) {
+            $categories = Category::withCount('blogs')->where('name', 'like', '%'.$request->search . '%')->orderBy('sort_order')->get();
+        } else {
+            $categories = Category::withCount('blogs')->orderBy('sort_order')->get();
+        }
+        
         return view('category.index', [
+            'request' => $request,
             'categories' => $categories
         ]);
     }

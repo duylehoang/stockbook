@@ -212,3 +212,64 @@ td > a:hover {
 .card-toggle:hover{
     color: #4caf50;
 }
+
+.tagitem {
+    background: #d9d9d9;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+.tagitem:hover {
+    background: #c8c8c8;
+}
+.tagitem a {
+    text-decoration: none;
+    color: #607d8b;
+}
+
+.format thead,
+.format tbody,
+.format tfoot,
+.format tr,
+.format td,
+.format th {
+  border-color: #c2c2c2;
+  border-style: solid;
+  border-width: 1px;
+  padding: 2px 6px;
+}
+
+.format thead {
+  background-color: #f4f9fb !important;
+}
+
+.format caption {
+    padding-bottom: 0.5rem;
+    color: #4b5e67;
+    text-align: left;
+    caption-side: top;
+}
+
+.format blockquote {
+    color: #215269;
+    border-left: 4px solid #b7c1c6;
+    padding-left: 10px;
+    margin: 0 0 1rem;
+}
+.col-note {
+    white-space: break-spaces;
+    max-width: 10rem;
+}
+
+.search-box {
+    margin-bottom: 10px;
+}
+
+.search-box input,
+.search-box button,
+.search-box select{
+    border: 1px solid #9e9e9e;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-size: 1rem;
+}

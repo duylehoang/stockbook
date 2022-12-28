@@ -13,6 +13,22 @@ if (!function_exists('isCurrentRouteName')) {
     }
 }
 
+if (!function_exists('getGalleryTypes')) {
+    function getGalleryTypes()
+    {
+        $types = [
+            1 => 'Banner trang chủ',
+            2 => 'Banner DS bài viết',
+            3 => 'Banner về tôi',
+            4 => 'Banner liên hệ',
+            5 => 'Banner bài viết',
+            6 => 'Hình ảnh bài viết'
+        ];
+
+        return $types;
+    }
+}
+
 if (!function_exists('getGalleryType')) {
     function getGalleryType($type)
     {
@@ -22,7 +38,7 @@ if (!function_exists('getGalleryType')) {
                 $type_name = 'Banner trang chủ';
                 break;
             case 2:
-                $type_name = 'Banner DS Blogs';
+                $type_name = 'Banner DS bài viết';
                 break;
             case 3:
                 $type_name = 'Banner về tôi';
@@ -105,5 +121,17 @@ if (!function_exists('setOption')) {
             $setting->value = $value;
             $setting->save();
         }
+    }
+}
+
+if (!function_exists('getBanner')) {
+    function getBanner($type)
+    {
+        $banner = DB::table('galleries')->where('type', $type)->where('status', 1)->first();
+        if($banner) {
+            return asset('upload/images/' . $banner->name);
+        } 
+
+        return null;
     }
 }

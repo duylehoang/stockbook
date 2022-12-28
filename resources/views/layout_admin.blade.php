@@ -15,12 +15,15 @@
     <link rel="stylesheet" href="{{ asset('/lib/fontawesome/css/all.min.css') }}">
     <!-- IziToast -->
     <link rel="stylesheet" href="{{ asset('lib/iziToast/iziToast.min.css') }}">
-
+     <!-- Select 2-->
+     {{-- <script src="{{ asset('lib/select2/css/select2.min.css') }}"></script> --}}
+    <!-- Jquery UI -->
+    <link rel="stylesheet" href="{{ asset('lib/jquery-ui/jquery-ui.min.css') }}">
 </head>
 
 <body>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="{{route('home.index')}}">StockBook</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="{{route('home.index')}}" target="_blank">ABC.com</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -66,6 +69,18 @@
                             <a class="nav-link" href="{{ route('gallery.index') }}">
                                 <span data-feather="file-text" class="align-text-bottom"></span>
                                 Galleries
+                            </a>
+                        </li>
+                        <li class="nav-item @if (isCurrentRouteName('trading_diary.index,trading_diary.create,trading_diary.edit')) active @endif">
+                            <a class="nav-link" href="{{ route('trading_diary.index') }}">
+                                <span data-feather="file-text" class="align-text-bottom"></span>
+                                Trading diary
+                            </a>
+                        </li>
+                        <li class="nav-item @if (isCurrentRouteName('trading_history.index,trading_history.create,trading_history.edit')) active @endif">
+                            <a class="nav-link" href="{{ route('trading_history.index') }}">
+                                <span data-feather="file-text" class="align-text-bottom"></span>
+                                Trading history
                             </a>
                         </li>
                         <li class="nav-item @if (isCurrentRouteName('setting.index')) active @endif">
@@ -127,8 +142,15 @@
     <script src="{{ asset('/lib/jquery.min.js') }}"></script>
     <!-- CKEditor -->
     <script src="{{ asset('lib/ckeditor/ckeditor.js') }}"></script>
+    <!-- Select 2-->
+    {{-- <script src="{{ asset('lib/select2/js/select2.min.js') }}"></script> --}}
+    <!--Jquery ui -->
+    <script src="{{ asset('lib/jquery-ui/jquery-ui.min.js') }}"></script>
+
     <!-- js -->
     <script src="{{ asset('/js/admin.js') }}"></script>
+
+    @stack('page-scripts')
 
     <!-- Flash message -->
     <script type="text/javascript">

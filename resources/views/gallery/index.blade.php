@@ -7,6 +7,22 @@
         <h1 class="h2">Galleries</h1>
         <a href="{{route('gallery.create')}}" class="btn btn-secondary">Thêm mới</a>
     </div>
+    {{-- Search form  --}}
+    <form class="search-box" method="GET" action="{{route('gallery.index') }}">
+        <input type="hidden" name="search_box" value="1">
+        <select name="gallery_type">
+            <option value="">-- Loại --</option>
+            @foreach (getGalleryTypes() as $key => $type)
+                <option value="{{$key}}" {{$request->gallery_type == $key? 'selected': ''}}>{{$type}}</option>
+            @endforeach
+        </select>
+        <select name="gallery_status">
+            <option value="">-- Trạng thái --</option>
+            <option value="'0'">Disable</option>
+            <option value="1">Active</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered table-sm table-main">
             <thead>

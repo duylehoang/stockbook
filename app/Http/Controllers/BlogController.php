@@ -19,11 +19,31 @@ class BlogController extends Controller
         $this->blog = $blog;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::with('category')->orderBy('sort_order')->paginate(20);
+        $categories = Category::select('id', 'name')->orderBy('sort_order')->get();
 
+        // Search
+        $blogs = Blog::with('category');
+        if ($request->has('search_box')) {
+            if ($request->category) {
+                $blogs = $blogs->where('category_id', $request->category);
+            }
+            if ($request->search) {
+                $txtSearch = $request->search;
+                $blogs = $blogs->where(function ($query) use ($txtSearch) {
+                    $query->where('title', 'like', '%' . $txtSearch . '%')
+                        ->orwhere('subtitle', 'like', '%' . $txtSearch . '%')
+                        ->orwhere('slug', 'like', '%' . $txtSearch . '%');
+                });
+            }
+        }
+        
+        $blogs = $blogs->orderBy('sort_order')->paginate(20);
+        
         return view('blog.index', [
+            'request' => $request,
+            'categories' => $categories,
             'blogs' => $blogs
         ]);
     }

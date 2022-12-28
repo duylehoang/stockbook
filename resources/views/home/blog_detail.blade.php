@@ -20,6 +20,11 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    <p class="post-meta post-time">
+                        Posted by
+                        <a href="{{ route('home.about') }}">Hoàng Duy</a>
+                        on {{ $blog->created_at->format('F d, Y') }}
+                    </p>
                     @if ($blog->subtitle)
                         <blockquote>{{ $blog->subtitle }}</blockquote>
                     @endif 

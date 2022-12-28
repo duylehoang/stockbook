@@ -16,11 +16,27 @@ class GalleryController extends Controller
         $this->gallery = $gallery;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $galleries = Gallery::orderBy('type')->orderBy('sort_order')->paginate(20);
+        $condition = array();
+        if ($request->has('search_box')) 
+        {
+            if ($request->gallery_type) {
+                array_push($condition, ['type', $request->gallery_type]);
+            }
+            if ($request->gallery_status) {
+                array_push($condition, ['status', $request->gallery_status]);
+            }
+        }
+
+        if(count($condition)) {
+            $galleries = Gallery::where($condition)->orderBy('type')->orderBy('sort_order')->paginate(20);
+        } else {
+            $galleries = Gallery::orderBy('type')->orderBy('sort_order')->paginate(20);
+        }
 
         return view('gallery.index', [
+            'request' => $request,
             'galleries' => $galleries
         ]);
     }

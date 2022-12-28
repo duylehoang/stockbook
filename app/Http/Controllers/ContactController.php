@@ -15,11 +15,27 @@ class ContactController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::orderBy('id', 'desc')->paginate(20);
+        $contacts = Contact::orderBy('id', 'desc');
+
+        if ($request->has('search_box')) {
+            if ($request->replied) {
+                $contacts = $contacts->where('replied', (int) $request->replied);
+            }
+            if ($request->search) {
+                $txtSearch = $request->search;
+                $contacts = $contacts->where(function ($query) use ($txtSearch) {
+                    $query->where('name', 'like', '%' . $txtSearch . '%')
+                        ->orwhere('email', 'like', '%' . $txtSearch . '%');
+                });
+            }
+        }
+
+        $contacts = $contacts->paginate(20);
 
         return view('contact.index', [
+            'request' => $request,
             'contacts' => $contacts
         ]);
     }

@@ -7,6 +7,11 @@
         <h1 class="h2">Categories</h1>
         <a href="{{route('category.create')}}" class="btn btn-secondary">Thêm mới</a>
     </div>
+    <form class="search-box" method="GET" action="{{route('category.index') }}">
+        <input type="hidden" name="search_box" value="1">
+        <input type="text" name="search" placeholder="search..." value="{{$request->search}}">
+        <button type="submit">Search</button>
+    </form>
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered table-sm table-main">
             <thead>

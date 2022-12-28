@@ -38,6 +38,26 @@ $(document).ready(function(){
         loading.hide();
     });
 
+    $('.card-toggle').click(function(){
+        $(this).closest('.card').find('.card-body').slideToggle(); 
+        
+        if ($(this).hasClass('fa-chevron-down')) {
+            $(this).removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        } else {
+            $(this).removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        }
+    });
+
+    // Popup image
+    $("article img").click(function () {
+        $("#full-image").attr("src", $(this).attr("src"));
+        $('#image-viewer').show();
+    });
+
+    $("#image-viewer .close").click(function () {
+        $('#image-viewer').hide();
+    });
+
     $("#sendContact").submit(function(e){
         e.preventDefault();
         var form = $(this);
