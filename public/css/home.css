@@ -313,7 +313,7 @@ table {
 
 caption {
   padding-bottom: 0.5rem;
-  color: #607d8b;
+  color: #215269;
   text-align: left;
 }
 
@@ -336,7 +336,7 @@ th {
 }
 
 thead {
-  background-color: #f4f9fb;
+  background-color: #d8e1e5;
 }
 
 label {
@@ -4549,7 +4549,7 @@ textarea.form-control-lg {
   margin-bottom: 0;
 }
 .card-body ol li a{
-  color: #607d8b !important;
+  color: #275165 !important;
 }
 .card-body ol li a:hover{
   text-decoration: underline;
@@ -11021,7 +11021,7 @@ textarea.form-control-lg {
   }
 }
 body {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 hr {
